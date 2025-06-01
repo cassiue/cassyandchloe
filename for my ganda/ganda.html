@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Be My Valentine?</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #noBtn {
+      transition: opacity 1s ease;
+    }
+
+    .fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="heart">❤️</div>
+  <h1>Will You Be My Valentine?</h1>
+  <p id="message">You're the most amazing person in my life, and I can't imagine spending Valentine's Day without you.</p>
+  <p>So... will you go out with me?</p>
+
+  <div class="button">
+    <button id="yesBtn" onclick="yesClicked()">Yes!</button>
+    <button id="noBtn" onclick="noClicked()">No</button>
+  </div>
+
+  <script>
+    let yesBtn = document.getElementById("yesBtn");
+    let noBtn = document.getElementById("noBtn");
+    let message = document.getElementById("message");
+    let noClickCount = 0;
+
+    const responses = [
+      "Pls give me a chance",
+      "Think about it",
+      "What if I asked nicely",
+      "Pretty please",
+      "With a cherry on top",
+      "Im gunna die",
+      "SAY YES"
+    ];
+
+    function noClicked() {
+      if (noClickCount < responses.length) {
+        alert(responses[noClickCount]);
+      } else {
+        alert("on my hands and knees rn");
+      }
+
+      noClickCount++;
+      let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+      yesBtn.style.fontSize = (currentSize * 4) + "px";
+
+      // After 5 clicks, fade out the "No" button
+      if (noClickCount >= 5) {
+        noBtn.classList.add("fade-out");
+      }
+    }
+
+    function yesClicked() {
+      window.location.href = "love-letter.html";
+    }
+  </script>
+</body>
+</html>

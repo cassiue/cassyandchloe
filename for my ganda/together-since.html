@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Time Together</title>
+
+  <link rel="stylesheet" href="time-style.css" 
+
+</head>
+<body>
+  <div class="heart">💘</div>
+
+  <h1 id="welcome">We've Been Together For...</h1>
+
+  <input
+    type="text"
+    id="name"
+    placeholder="Enter your name"
+    oninput="personalize()"
+  />
+
+  <div class="timer" id="timer">Loading...</div>
+
+  <script>
+    const anniversaryDate = new Date("2024-11-21T00:00:00");
+
+    function updateTimer() {
+      const now = new Date();
+      let diff = now - anniversaryDate;
+
+      if (diff < 0) {
+        document.getElementById("timer").innerText = "Our love starts soon! ❤️";
+        return;
+      }
+
+      let seconds = Math.floor(diff / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      let days = Math.floor(hours / 24);
+
+      let years = Math.floor(days / 365);
+      let months = Math.floor((days % 365) / 30);
+      days = days - (years * 365) - (months * 30);
+      hours = hours % 24;
+      minutes = minutes % 60;
+      seconds = seconds % 60;
+
+      document.getElementById("timer").innerText =
+        `${years} years, ${months} months, ${days} days, ` +
+        `${hours} hours, ${minutes} minutes, ${seconds} seconds 💖`;
+    }
+
+    function personalize() {
+      const nameInput = document.getElementById("name").value.trim();
+      const welcome = document.getElementById("welcome");
+      if (nameInput) {
+        welcome.innerText = `${nameInput}, We've Been Together For...`;
+      } else {
+        welcome.innerText = `We've Been Together For...`;
+      }
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
